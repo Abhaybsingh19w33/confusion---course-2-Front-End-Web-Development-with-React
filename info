@@ -49,3 +49,33 @@ it returns a set of react elements thar sjhould appear on the screen
 
 component enable you to split your ui into indepnent, reusable pctAOIAMVStI2TMLhozPKbf5yTEXc0OJa0eENheb4w09SrgOWEs
 components also accept inputs
+
+State
+each component can store its own state info in its "state" property
+
+private and fully controlled bby the component
+can be passed as propsto children
+
+Only class components can have local state
+
+setState methid to change the content of state
+
+JSX attribute are passsed into a component as a single objects
+available in the compoennt as props
+can pass inmultiplee attributes 
+cannot modify props within the component
+
+Handling events
+Handling events is a similar to the way you handle events on DOM elements:
+use camelcase to specify events 
+Pass function as the event handler
+
+Lifting State up
+sometimes several components may share the same data
+changes to data in one component needs to be reflected to another component
+Best move the shared state to a common ancestor component
+
+list and keys
+list are handled similar to js
+key should be given to elements inside the array - help indentify whihc ites have changed, are added or removed
+
