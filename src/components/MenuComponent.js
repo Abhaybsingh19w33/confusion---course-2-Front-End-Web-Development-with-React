@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Media } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class Menu extends Component {
     // defining constructor
@@ -8,6 +9,31 @@ class Menu extends Component {
         super(props);
         // state stores the properties of the component, so we can make us of
         this.state = {
+            selectedDish: null
+        }
+    }
+
+    onDishSelect(dish) {
+        this.setState({ selectedDish: dish });
+    }
+
+    renderDish(dish) {
+        if (dish != null) {
+            return (
+                <Card>
+                    <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <CardBody>
+                        <CardTitle heading>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            );
+        }
+        else {
+            // if nothinf is selected then just pass div
+            return (
+                <div></div>
+            );
         }
     }
 
@@ -21,33 +47,30 @@ class Menu extends Component {
                 // here we will create the view for each of the item dishes
                 // in js every item requires a key attribute to be specified
                 // this will help the identify the item uniquely
-                <div key={dish.id} className="col-12 mt-5">
+                <div key={dish.id} className="col-12 col-md-5 mt-1">
                     {/* list tag item */}
-                    <Media tag="li">
-                        {/* alignment */}
-                        <Media left middle>
-                            {/* display the image */}
-                            <Media object src={dish.image} alt={dish.name} />
-                        </Media>
-                        {/* body of the image */}
-                        <Media body className="ml-5">
+                    {/* relacing Media with cards */}
+                    <Card onClick={() => this.onDishSelect(dish)}>
+                        {/* display the image */}
+                        <CardImg width="100%" src={dish.image} alt={dish.name} />
+                        {/* displaying the name of the dishes on the image card itself */}
+                        <CardImgOverlay>
                             {/* heading for dish */}
-                            <Media heading>{dish.name}</Media>
-                            {/* dish description */}
-                            <p>{dish.description}</p>
-                        </Media>
-                    </Media>
+                            <CardTitle heading>{dish.name}</CardTitle>
+                        </CardImgOverlay>
+                    </Card>
                 </div>
             );
         });
         return (
             <div className="container">
                 <div className="row">
-                    {/* list of items */}
-                    <Media list>
-                        {/* js variables */}
-                        {menu}
-                    </Media>
+                    {/* js variables */}
+                    {menu}
+                </div>
+                <div className="row">
+                    {/* rendering the dish and shioeing the card details */}
+                    {this.renderDish(this.state.selectedDish)}
                 </div>
             </div>
         );
