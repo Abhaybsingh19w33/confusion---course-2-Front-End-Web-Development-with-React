@@ -44,7 +44,7 @@ props
 virtual DOM
 Element
 
-Complexity
+Component
 it returns a set of react elements thar sjhould appear on the screen
 
 component enable you to split your ui into indepnent, reusable pctAOIAMVStI2TMLhozPKbf5yTEXc0OJa0eENheb4w09SrgOWEs
