@@ -1,0 +1,46 @@
+Why js framework or libraries?
+-Complexity of managing DOM manipulation and data updates manually.
+-Well Defined application architecture
+    --model view container/ model view view ModelView/modelview whatevere
+    --binding of model adn view : controllers, view models
+    --flux architecture/redux
+
+
+Software library
+-collection of implementation of behaviour with a well-defined interface by which
+ the behavior is invoked
+-reuse of behaviour
+-Modulariy
+eg jquery
+
+Sotware framework
+-Abstraction in whihc software provides generic functionality that can be selectively
+changed by additional user-written code
+-universal, reusable environment that provides particular
+functionality as part of a larger software platform
+Eg, Angular, Enber, Backbone
+
+Library vs framework
+library - your code is in charge and it calls into the library when it sees fit.
+framework - The framework is in charger and it calls into your code when it needs something app specific
+
+framework
+Inversion of control
+Imperative approach - designer specifies how the work need to be done
+Declarative approach - designer specifies what work needs to be done
+
+
+React use declarative approach
+Component based approach, we encapsulate behaviours into small units called component
+Technology stack agnostic
+React designed by Jordan Walke
+Speed, simplicity and scalability
+
+One way data flow
+JSX
+components
+state
+props
+virtual DOM
+Element
+
