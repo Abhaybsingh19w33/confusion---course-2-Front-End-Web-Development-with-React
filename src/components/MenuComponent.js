@@ -48,7 +48,6 @@ class Menu extends Component {
                 // in js every item requires a key attribute to be specified
                 // this will help the identify the item uniquely
                 <div key={dish.id} className="col-12 col-md-5 mt-1">
-                    {/* list tag item */}
                     {/* relacing Media with cards */}
                     <Card onClick={() => this.onDishSelect(dish)}>
                         {/* display the image */}

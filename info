@@ -79,3 +79,23 @@ list and keys
 list are handled similar to js
 key should be given to elements inside the array - help indentify whihc ites have changed, are added or removed
 
+Life Cycle of the component
+There are several component are used to create a react application.
+As required component is created and added to DOM.
+
+Stages of life Cycle of component in react
+-mounting
+-Updating
+-Unmounting
+
+Several lifecycle methods available in each Stages
+MOunting Lifecycle methods
+- called when an instance of a component is being created and inserted into the  DOM
+- constructor() - 
+- getDerivedStateFromProps()
+- render()
+- componentDidMount()
+
+An earlier method now deprecated called 
+- componentWillMount
+
