@@ -154,3 +154,19 @@ Simplest way to define Reacct component
 JS function that retunrs a React element, or a collection of React elements that define the view
 Receives a props object as a parameter
 Cannot have local state or access lifecycle hook
+
+React Virtual DOM
+Browser DOm is a browser object
+Virtual DOM is saReact object
+- A lightweight representation of the Browser DOM
+- In menory tree data structure of plain JS objects
+- Manipulations extremely fast compared to modifying the browser DOM
+- created completely from scratch on every setState
+
+Diffing Algorithm will detect those nodes that are changed
+- Updates the entire sub-tree if diffing detects that 2 elements are of different types
+- Using "key" you can hint child elements as stable
+-- No need to re-render where keys do not change
+
+React -Fiber : new reconsilation Algorithm in React-16 
+- Incremental rendering
