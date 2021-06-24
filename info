@@ -170,3 +170,35 @@ Diffing Algorithm will detect those nodes that are changed
 
 React-Fiber : new reconsilation Algorithm in React-16 
 - Incremental rendering
+
+React Router
+- to navigate among various page of your application
+
+Collection of navigational component
+- Enables navigation among views
+- Router components, route matching components and navigation component
+Uses a browser-based bookmarkable URLs as an instruction to naviagte to a client genrated view in your web app
+- Can also pass along optional parameters
+
+Web app routing 
+react router DOm
+Router compoennt <Browserrouter>
+- Creates specializes history object
+- Also <HashRouter> if you are uing a static fie server
+- Enclose your app in BrowserRouter
+ 
+Route matching
+component Route and Switch
+- <Route>'s path prop enables specification of the current location's pathname
+- Route component prop specifies the corresponding viw for the location
+- Using exact attribute ensures that the path must be exactly matched 
+- Redirect enable the default route specification 
+- Switch enables grouping together several routes
+-- Will iterate over all its children and find the first one that matches the path. 
+
+navigation
+Naviagtion is supported through the <Link> and <NavLink> component
+- <Link> creates links in your application 
+-- will render as <a> in the html
+- <NavLink> also attaches the active class to the link when its 
+props matches the current location
