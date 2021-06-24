@@ -122,3 +122,23 @@ Make use of presentational component for rendering
 - can wrap presentational comopnent in wrapping divs 
 Provide the data to the presentational components
 maintain state and communicate with data sources
+
+life cycyle methods
+Stages of life Cycle of component in react
+-mounting
+-Updating
+-Unmounting
+
+Several lifecycle methods available in each Stages
+
+Updating Lifecycle methods
+called when a component sis being re-rendered
+- Can be caused by changes to props or state
+- getDerivedStateFromProps()
+- shouldComponentUpdate()
+- render()
+- getSnapshotBeforeUpdate()
+- compoentDidUpdate()
+
+2 Mehods that are now deprecated
+componentWillReceiveProps() and componentWillUpdate()
