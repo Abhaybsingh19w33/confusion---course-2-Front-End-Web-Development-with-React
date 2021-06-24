@@ -142,3 +142,15 @@ called when a component sis being re-rendered
 
 2 Mehods that are now deprecated
 componentWillReceiveProps() and componentWillUpdate()
+
+Class Component
+Extend React.Component to get class component
+Need to implement the render() method that returns the view
+can have local state
+lifecycle hook
+
+Functional component
+Simplest way to define Reacct component
+JS function that retunrs a React element, or a collection of React elements that define the view
+Receives a props object as a parameter
+Cannot have local state or access lifecycle hook
