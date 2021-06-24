@@ -1,34 +1,12 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
-import DishDetail from "../components/DishdetailComponent";
+
 
 class Menu extends Component {
     // defining constructor
     constructor(props) {
         // supplying this props to the super class
         super(props);
-        // state stores the properties of the component, so we can make us of
-        this.state = {
-            selectedDish: null
-        }
-    }
-
-    onDishSelect(dish) {
-        this.setState({ selectedDish: dish });
-    }
-
-    renderDish(dish) {
-        if (dish != null) {
-            return (
-                <DishDetail dish={dish} />
-            );
-        }
-        else {
-            // if nothing is selected then just pass div
-            return (
-                <div></div>
-            );
-        }
     }
 
     // this will be displayed on UI
@@ -43,13 +21,15 @@ class Menu extends Component {
                 // this will help the identify the item uniquely
                 <div key={dish.id} className="col-12 col-md-5 mt-1">
                     {/* relacing Media with cards */}
-                    <Card onClick={() => this.onDishSelect(dish)}>
+                    {/* here main component is passing a onclick as a props to this Menu component */}
+                    {/* then dish.id will be passed back to main and stored in selected dish */}
+                    <Card onClick={() => this.props.onClick(dish.id)}>
                         {/* display the image */}
                         <CardImg width="100%" src={dish.image} alt={dish.name} />
                         {/* displaying the name of the dishes on the image card itself */}
                         <CardImgOverlay>
                             {/* heading for dish */}
-                            <CardTitle heading>{dish.name}</CardTitle>
+                            <CardTitle heading><h4>{dish.name}</h4></CardTitle>
                         </CardImgOverlay>
                     </Card>
                 </div>
@@ -60,10 +40,6 @@ class Menu extends Component {
                 <div className="row">
                     {/* js variables */}
                     {menu}
-                </div>
-                <div className="row">
-                    {/* rendering the dish and shioeing the card details */}
-                    {this.renderDish(this.state.selectedDish)}
                 </div>
             </div>
         );

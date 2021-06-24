@@ -99,3 +99,26 @@ MOunting Lifecycle methods
 An earlier method now deprecated called 
 - componentWillMount
 
+
+Presentational and Container component
+Presentational compoennt only get the data as propd and they are responsible for pureluyy Presentational compoent
+Container compoennt only pass the data to its child component
+
+component Types
+Presentational vs container
+Skinny vs fat 
+Dumb vs Smart
+Stateless and stateful
+
+presentational component 
+- maiinly concerned with rendering the "view"
+- render the view based on the data that is passed to them in props
+- Do not maintain teir own local state - can be relaxed to maintain only UI state than data
+
+Container component 
+Responsible formaking things work
+- Data fetching, state updates
+Make use of presentational component for rendering
+- can wrap presentational comopnent in wrapping divs 
+Provide the data to the presentational components
+maintain state and communicate with data sources
