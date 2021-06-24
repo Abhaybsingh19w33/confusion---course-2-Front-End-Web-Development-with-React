@@ -168,5 +168,5 @@ Diffing Algorithm will detect those nodes that are changed
 - Using "key" you can hint child elements as stable
 -- No need to re-render where keys do not change
 
-React -Fiber : new reconsilation Algorithm in React-16 
+React-Fiber : new reconsilation Algorithm in React-16 
 - Incremental rendering
