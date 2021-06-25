@@ -9,6 +9,7 @@ import DishDetail from "./DishdetailComponent";
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Contact from './ContactComponent';
+import About from './AboutComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 // changing from function to class component
 // function App() {
@@ -68,6 +69,7 @@ class Main extends Component {
                     {/* here Route returns 3 prams that we use in DishWithId */}
                     <Route path="/menu/:dishId" component={DishWithId} />
                     <Route exact path="/contactus" component={Contact} />
+                    <Route exact path="/aboutus" component={() => <About leaders={this.state.leaders} />} />
                     {/* if no path matches then redirect to home page */}
                     <Redirect to="/home" />
                 </Switch>

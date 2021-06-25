@@ -9,10 +9,9 @@ function Contact(props) {
             <div className="row">
                 <Breadcrumb>
                     <BreadcrumbItem>
-                        <Link to='/menu'>Menu</Link>
+                        <Link to='/home'>Home</Link>
                     </BreadcrumbItem>
-                    <BreadcrumbItem active>
-                        {/* {props.dish.name} */}
+                    <BreadcrumbItem active>                        
                         Contact Us
                     </BreadcrumbItem>
                 </Breadcrumb>
