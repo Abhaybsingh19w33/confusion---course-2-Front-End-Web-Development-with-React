@@ -263,3 +263,109 @@ Uncontrolled components
 - Uncontrolled component approach allows you to handle the form data by the DOM itself
 - Instead of writing an event handler for every state updat, use a ref to get form values from the DOM
 - More easier to integrate React with non-React code
+
+Design Patterns
+Well-documenter solution to a recurring problem
+-Also reffered to as an artchitectural pattern
+
+Software design pattern
+-Reusable solution to commonly occuring problems
+
+Model View Controller framework
+Software engineering architecture Patterns
+- Isolation of domain logic from user interface
+- Permits independent development, testing and maintenace(separation of concerns)
+
+        ---> controller
+        |    /`     \,
+        view  <--- Modal    
+               ===>
+
+Model
+-Manages the behavior and data of the appliactiondomain
+-responds to requests for information about its state(usually froom the view)
+-respopnds to instructions to change state(usually from the controller)
+-In even-driven systems, the model notifies observers(usually views) when the information change so  that they can react
+
+View
+-renders the model into a form suitable for interaction, typically a user interface element
+-multiple views can exist for a single model for different purposes
+-A viewport typically has a ont to onr correspondence with a display and knows how to render to it
+
+Controller
+-receives user input and initialtes a response by making on modal objects
+-A controller accepts inout from te user and instructs the model and viewport to perform actions based on that input
+
+Model View View-Model
+-Descendent of MVC
+-Sometimes called Model-View-Binder
+    Databinding
+View <---> View Model ---> Mpdel
+                       <---
+Presentational      business Logic and data
+logic    
+
+View Model
+- Abstraction of the view that exposes public properties and commands
+- Declarative and data binding
+
+The flux architecture
+
+React and MVC
+- Initially React was viewed as the "V" in MVC
+-- Not emphasized any more
+Facebook found issues with using the standard MVC architecture pattern
+-Discardrr in favorof theflus architecture
+-problems with cascading updates, decentralized mutations, race conditions
+
+The flux architecture
+Unidirectional Data Flow
+Action ---> Dispatcher ---> Store ---> View
+
+New actions propogates through the system in response to user interactions
+
+Introduction to Redux
+What is Redux?
+-Predictable state container for js apps
+-Inspired by Flux,Elm,immutable
+-Makes state mutations Predictable
+
+Main Principles of Redux
+- Single source of truth
+-- Single state object tree within a single store
+- State is red only(only getters, no setters)
+-- changes should only be done through actions
+- Changes are made with pure functions
+-- Take previous atate and action and return next state
+-- No mutation of the previous state
+- Single store and single state tree enables powerful techniques
+-- Logging
+-- API Handling
+-- undo/redo
+-- State persistance
+-- "time-travel debuggin"
+
+Redux concepts
+Store: stored in plain js object
+Action: plain JS object with a type field that specifies how to change something in the state
+Reducer: pure function that takes the current state and actions and retunr a new state
+- Update data immuatBly (do not modify inputs)
+
+Redux store
+-  Holds the current state value
+- Created using createStore()
+-Supplies 3 methods
+-- dispatch() states state updates eithe the provided action object
+-- getState() returns the current stored state value
+-- aubscribe() accepts a callback function that will be run every time an action is dispatched
+
+React with redux
+-Use th rreact-reux package for bindings betwenn React and Redux
+-- connect() : generates a wrapper "container" component that subscribes to the store
+-- Surround your App root with <Provider>
+--- Takes the store as an attribute
+--- makes store accesible toa ll connected components
+
+To connect() function takes 2 optional arguments
+- mapStateToProps() called every time store state changes. retunrs an object full of data with each field being a proop for the wrapped component
+- mapDispachToProps() receives the dispatch() method and should return an object full of function that use dispatch()
