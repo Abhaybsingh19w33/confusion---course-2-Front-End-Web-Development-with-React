@@ -233,3 +233,26 @@ match object
 match object provides information about how a <Route path> matched the URL
 - params: an object that contains key/value pair parsed fromm the URL corresponding to the dynamic segments of the path
 -- eg if path  is specified as /menu/:id, then a path like /menu/42 will result in math.params.id being equal to "42"
+
+Controlled Forms
+- Cohesive, effective and compelling dta entry experience
+- Extensivey used in websited and web applications for
+-- log in
+-- submit information (placing orders, booking a ticket etc)
+
+HTML Forms
+Form tag
+Form element
+- input
+- textarea
+- button
+- select
+
+These elements maintain their own state and update it based on user input
+
+Controlled Component
+Make the react comoponent control the form that it renders
+- Single source of truth
+- Tying the form state to component state
+- controlled component
+Every state mutation will have an associated handler function
