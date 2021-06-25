@@ -256,3 +256,10 @@ Make the react comoponent control the form that it renders
 - Tying the form state to component state
 - controlled component
 Every state mutation will have an associated handler function
+
+Uncontrolled components
+- Ideally you should implement forms within controlled components
+- sometimes this approach may be too tedious
+- Uncontrolled component approach allows you to handle the form data by the DOM itself
+- Instead of writing an event handler for every state updat, use a ref to get form values from the DOM
+- More easier to integrate React with non-React code
