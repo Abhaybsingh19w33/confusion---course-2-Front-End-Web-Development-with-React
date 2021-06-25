@@ -216,3 +216,20 @@ Challenge
 - Maintaining history
 - Analytics
 - Speeding up the initial page load
+
+React Router 
+- Path specified as a URL
+- Path can also carry parameters values
+-- eg / menu/42 where 42 is a route parameter
+- Route parameters specified in thepath specification as a token
+-- eg path: menu/:id where id is the token
+
+Route parameters cam be spedified using a link parameter while specifyinng the link
+- eg <Link to{'/menu/$(dish.id)'}>
+Route passes three props to the component
+- match, location, history
+
+match object
+match object provides information about how a <Route path> matched the URL
+- params: an object that contains key/value pair parsed fromm the URL corresponding to the dynamic segments of the path
+-- eg if path  is specified as /menu/:id, then a path like /menu/42 will result in math.params.id being equal to "42"

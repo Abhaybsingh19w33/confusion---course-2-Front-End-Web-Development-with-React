@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 // converting the class component to functional component
 function RenderMenuItem({ dish, onClick }) {
@@ -7,14 +8,18 @@ function RenderMenuItem({ dish, onClick }) {
         // relacing Media with cards
         // here main component is passing a onclick as a props to this Menu component
         // then dish.id will be passed back to main and stored in selected dish
-        <Card onClick={() => onClick(dish.id)}>
-            {/* display the image */}
-            <CardImg width="100%" src={dish.image} alt={dish.name} />
-            {/* displaying the name of the dishes on the image card itself */}
-            <CardImgOverlay>
-                {/* heading for dish */}
-                <CardTitle heading><h4>{dish.name}</h4></CardTitle>
-            </CardImgOverlay>
+        <Card>
+            {/* `` js code inside this, when it is passed, it is evaluated */}
+            {/* so dish.id will be substituted with its id */}
+            <Link to={`/menu/${dish.id}`}>
+                {/* display the image */}
+                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                {/* displaying the name of the dishes on the image card itself */}
+                <CardImgOverlay>
+                    {/* heading for dish */}
+                    <CardTitle heading><h4>{dish.name}</h4></CardTitle>
+                </CardImgOverlay>
+            </Link>
         </Card>
     );
 }
@@ -30,12 +35,24 @@ const Menu = (props) => {
             // in js every item requires a key attribute to be specified
             // this will help the identify the item uniquely
             <div key={dish.id} className="col-12 col-md-5 mt-1">
-                <RenderMenuItem dish={dish} onClick={props.onClick}/>
+                <RenderMenuItem dish={dish} />
             </div>
         );
     });
     return (
         <div className="container">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem>
+                        <Link to='/home'>Home</Link>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem active>Menu</BreadcrumbItem>
+                </Breadcrumb>
+                <div className="col-12">
+                    <h3>Menu</h3>
+                    <hr />
+                </div>
+            </div>
             <div className="row">
                 {/* js variables */}
                 {menu}

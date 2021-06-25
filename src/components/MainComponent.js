@@ -40,6 +40,22 @@ class Main extends Component {
                 />
             );
         }
+
+        // method a params from route
+        // it consist of parameter as dishId
+        const DishWithId = ({ match }) => {
+            // console.log("dish");
+            // console.log(this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId, 10)[0]));
+            // console.log("comments");
+            // console.log(this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10)));
+            return (
+                // match.params.dishId - accessing the dishId from params
+                // 10 is the redix od decimal number
+                <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId, 10))[0]}
+                    comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))} />
+            );
+        }
+
         return (
             <div>
                 <Header />
@@ -49,6 +65,8 @@ class Main extends Component {
                     {/* this Route will not allow us to pasa ny props into menu component */}
                     {/* so we have to pass the props as an function component */}
                     <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
+                    {/* here Route returns 3 prams that we use in DishWithId */}
+                    <Route path="/menu/:dishId" component={DishWithId} />
                     <Route exact path="/contactus" component={Contact} />
                     {/* if no path matches then redirect to home page */}
                     <Redirect to="/home" />
