@@ -202,3 +202,17 @@ Naviagtion is supported through the <Link> and <NavLink> component
 -- will render as <a> in the html
 - <NavLink> also attaches the active class to the link when its 
 props matches the current location
+
+Single page application
+Web application or web site  that fits in a single page
+- No need to reload th entire page
+- UX like a desktop/native application
+- Most Resources are retreived with a single page load
+- redraw parts of the page when needed without requiring a full server roundtrip
+
+Challenge
+- Search engine optimization
+- Partitioning the responsibility betwenn client and server
+- Maintaining history
+- Analytics
+- Speeding up the initial page load
