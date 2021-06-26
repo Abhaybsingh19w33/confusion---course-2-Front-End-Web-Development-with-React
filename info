@@ -369,3 +369,14 @@ React with redux
 To connect() function takes 2 optional arguments
 - mapStateToProps() called every time store state changes. retunrs an object full of data with each field being a proop for the wrapped component
 - mapDispachToProps() receives the dispatch() method and should return an object full of function that use dispatch()
+
+React-redux-Form
+- A versatile, fast and intuitive library for creating complex and performant forms in react and redux
+- Collection of reducer creators and action creators
+- Form data stored in Redux store in a model
+- Validation support for forms
+
+LocalForm
+-Maps form model to local state of the component
+- Suitable when you don't need form data persistance across component mounting/unmounting
+- Can still perform form validation using support from react-redux-form
