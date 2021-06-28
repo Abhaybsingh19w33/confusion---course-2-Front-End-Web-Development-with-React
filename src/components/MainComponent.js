@@ -24,7 +24,6 @@ const mapStateToProps = (state) => {
 class Main extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {
