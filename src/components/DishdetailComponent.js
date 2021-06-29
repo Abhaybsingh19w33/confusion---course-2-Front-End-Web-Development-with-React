@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
     Modal, ModalHeader, ModalBody, Button, Row,
-    Col, Label, Breadcrumb, BreadcrumbItem, Card, 
+    Col, Label, Breadcrumb, BreadcrumbItem, Card,
     CardImg, CardText, CardBody, CardTitle
 } from "reactstrap";
 import { Control, LocalForm, Errors } from 'react-redux-form';
@@ -12,34 +12,42 @@ const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 function RenderDish({ dish }) {
     if (dish != null) {
-        return < Card >
-            {/* this will add one more card that will have the selected image and title */}
-            <CardImg top src={dish.image} alt={dish.name} />
-            < CardBody >
-                <CardTitle><h4>{dish.name}</h4></CardTitle>
-                <CardText>{dish.description}</CardText>
-            </CardBody >
-        </Card >
+        return (
+            <div className="col-12 col-md-5 mt-1">
+                <Card>
+                    {/* this will add one more card that will have the selected image and title */}
+                    <CardImg top src={dish.image} alt={dish.name} />
+                    < CardBody >
+                        <CardTitle><h4>{dish.name}</h4></CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody >
+                </Card>
+            </div >
+        );
     }
     else {
         return <div></div>;
     }
 }
 
-function RenderComments({ comments }) {
-    if (comments != null) {     
+function RenderComments({ comments, addComment, dishId }) {
+    if (comments != null) {
         return (
-            <div>
-                {comments.map(comment => (
-                    <ul key={comment.id} className="list-unstyled">
-                        <li className="mb-2">{comment.comment}</li>
-                        <li>
-                            -- {comment.author}{" "}
-                            {new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "2-digit" }).format(new Date(Date.parse(comment.date)))}
-                        </li>
-                    </ul>
-                ))}
-                <CommentForm />
+            <div className="col-12 col-md-5 m-1">
+                <h4>Comments</h4>
+                <ul className="list-unstyled">
+                    {comments.map((comment) => {
+                        return (
+                            <li key={comment.id}>
+                                <p>{comment.comment}</p>
+                                <p>
+                                    -- {comment.author} , {new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "2-digit" }).format(new Date(Date.parse(comment.date)))}
+                                </p>
+                            </li>
+                        );
+                    })}
+                </ul>
+                <CommentForm dishId={dishId} addComment={addComment}/>
             </div>
         );
     } else return <div></div>;
@@ -64,15 +72,13 @@ const DishDetail = (props) => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-md-5 mt-1">
-                        <RenderDish dish={props.dish} />
-                        {/* {this.renderDish(dish)} */}
-                    </div>
-                    <div className="col-12 col-md-5 mt-1">
-                        <h4>Comments</h4>
-                        <RenderComments comments={props.comments} />
-                        {/* {this.renderComments(dish)} */}
-                    </div>
+                    <RenderDish dish={props.dish} />
+                    {/* dishId={props.dish.id} id ispassed to 
+                        know about which which dish is going to be rendered */}
+                    <RenderComments comments={props.comments}
+                        addComment={props.addComment}
+                        dishId={props.dish.id}
+                    />
                 </div>
             </div>
         );
@@ -87,6 +93,7 @@ class CommentForm extends Component {
             isModalOpen: false
         };
         this.toggleModal = this.toggleModal.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     toggleModal() {
@@ -96,8 +103,23 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        console.log("Current State is: " + JSON.stringify(values));
-        alert("Current State is: " + JSON.stringify(values));
+        this.toggleModal();
+        // console.log("Current State is: " + JSON.stringify(values));
+        // alert("Current State is: " + JSON.stringify(values));
+
+        // when submitted this comment will be added to the list of comments
+        
+        // when you submit the comment, you'll see that the submission of the 
+        // comment will trigger action to be sent to your redux store, and then 
+        // this action will result in the comment being added into the comments 
+        // part of the state of your redux store, and then when the changes, then
+        // that will result in the store emitting a change, and that will result 
+        // in your main component going and getting the updated state from the redux 
+        // store, and then the main component passes the new state to all the chilled 
+        // components, and then when you come down the RenderComments component realizes 
+        // that the comments part has changed, so it will have to be rendered. So, react
+        //  takes care of re rendering that with new the comment added into the list there.
+        this.props.addComment(this.props.dishId,values.rating,values.author,values.comment);
     }
 
     render() {

@@ -8,6 +8,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { addComment } from '../redux/ActionCreators';
 // changing from function to class component
 // function App() {
 // main component will be the responsible for the state of application
@@ -20,6 +21,15 @@ const mapStateToProps = (state) => {
         leaders: state.leaders
     };
 }
+
+// dispatch parameter is received from store
+const mapDispatchToProps = (dispatch) => ({
+    // these parameters are passed as parameter of addComments, then dispatch
+    // so here actioncreator add commment will return an action object for addign a comment
+    // then it is given as parameter to the dispatch function
+    // then we are supplying as a function, which can be used as a component here
+    addComment: (dishID, rating, author, comment) => dispatch(addComment(dishID, rating, author, comment))
+});
 
 class Main extends Component {
     constructor(props) {
@@ -44,8 +54,12 @@ class Main extends Component {
             return (
                 // match.params.dishId - accessing the dishId from params
                 // 10 is the redix od decimal number
+
+                // passing the function as a props
                 <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId, 10))[0]}
-                    comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))} />
+                    comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))}
+                    addComment={this.props.addComment}
+                />
             );
         }
 
@@ -80,5 +94,5 @@ class Main extends Component {
 
 // connecting to redux
 // to make use of react router 
-// connect should be sround by withRouter
-export default withRouter(connect(mapStateToProps)(Main));
+// connect should be surround by withRouter
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
