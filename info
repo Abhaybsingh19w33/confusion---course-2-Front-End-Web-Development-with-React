@@ -380,3 +380,31 @@ LocalForm
 -Maps form model to local state of the component
 - Suitable when you don't need form data persistance across component mounting/unmounting
 - Can still perform form validation using support from react-redux-form
+
+React Action
+Actions: payloa of information that sends data fromyour application to the store
+- Done through store.dispatch()
+
+Plain JS object that must have
+- A type property that indicates the type of action to be performed
+-- Best suppported by defining action types as String constants
+- Rest of the object contains the data necessary for the action(payload)
+
+Action creators
+Functions that create actions
+- Encapsulate the process of creating the action objects
+- return the action object
+- Resulting action object cam be passed to the store through dispatch()
+
+Action and Reducer
+Reducers should be able to take the previous statte and action and retunt next state
+- Do not mutate state
+-- make a copy and modify the copy before returing it
+- Actions typically handled through a switch statement switching on the action type
+- Return the previous state in the default case
+
+Splitting and combining reducers
+Depending on the state shape, field and updates to them could be decoupled:
+- split the reducer into silper reducer functions that operate on only some of the fields
+-- Manages parts/slices of the global state
+- Combine the simplper functions to generate the overall state
