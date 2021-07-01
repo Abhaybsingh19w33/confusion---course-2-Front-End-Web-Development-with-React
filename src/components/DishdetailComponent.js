@@ -6,6 +6,7 @@ import {
 } from "reactstrap";
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -47,43 +48,62 @@ function RenderComments({ comments, addComment, dishId }) {
                         );
                     })}
                 </ul>
-                <CommentForm dishId={dishId} addComment={addComment}/>
+                <CommentForm dishId={dishId} addComment={addComment} />
             </div>
         );
     } else return <div></div>;
 }
 
 const DishDetail = (props) => {
-    if (props.dish != null) {
+    if (props.isLoading) {
         return (
             <div className="container">
                 <div className="row">
-                    <Breadcrumb>
-                        <BreadcrumbItem>
-                            <Link to='/menu'>Menu</Link>
-                        </BreadcrumbItem>
-                        <BreadcrumbItem active>
-                            {props.dish.name}
-                        </BreadcrumbItem>
-                    </Breadcrumb>
-                    <div className="col-12">
-                        <h3>{props.dish.name}</h3>
-                        <hr />
-                    </div>
-                </div>
-                <div className="row">
-                    <RenderDish dish={props.dish} />
-                    {/* dishId={props.dish.id} id ispassed to 
-                        know about which which dish is going to be rendered */}
-                    <RenderComments comments={props.comments}
-                        addComment={props.addComment}
-                        dishId={props.dish.id}
-                    />
+                    <Loading />
                 </div>
             </div>
         );
     }
-    else return <div></div>;
+    else if (props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else
+        if (props.dish != null) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <Breadcrumb>
+                            <BreadcrumbItem>
+                                <Link to='/menu'>Menu</Link>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem active>
+                                {props.dish.name}
+                            </BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                            <h3>{props.dish.name}</h3>
+                            <hr />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <RenderDish dish={props.dish} />
+                        {/* dishId={props.dish.id} id ispassed to 
+                        know about which which dish is going to be rendered */}
+                        <RenderComments comments={props.comments}
+                            addComment={props.addComment}
+                            dishId={props.dish.id}
+                        />
+                    </div>
+                </div>
+            );
+        }
+        else return <div></div>;
 }
 
 class CommentForm extends Component {
@@ -108,7 +128,7 @@ class CommentForm extends Component {
         // alert("Current State is: " + JSON.stringify(values));
 
         // when submitted this comment will be added to the list of comments
-        
+
         // when you submit the comment, you'll see that the submission of the 
         // comment will trigger action to be sent to your redux store, and then 
         // this action will result in the comment being added into the comments 
@@ -119,7 +139,7 @@ class CommentForm extends Component {
         // components, and then when you come down the RenderComments component realizes 
         // that the comments part has changed, so it will have to be rendered. So, react
         //  takes care of re rendering that with new the comment added into the list there.
-        this.props.addComment(this.props.dishId,values.rating,values.author,values.comment);
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {

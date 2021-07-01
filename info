@@ -408,3 +408,39 @@ Depending on the state shape, field and updates to them could be decoupled:
 - split the reducer into silper reducer functions that operate on only some of the fields
 -- Manages parts/slices of the global state
 - Combine the simplper functions to generate the overall state
+
+Redux Middleware
+Provide the capability to run code after an action is dispatched, but 
+before it reacher the reducer
+- Third-party extension point
+- eg loggin, async API calls
+Middleware
+- Forms pipeline that warps around the dispatch
+- Pass action onward
+- Restart the dispatch pipeline
+- Access the store state
+Middlewate typically used for
+- Inspectinf the actions and the state,
+- Modify actions
+- Dispatch other actions
+- Stop actions from reaching the reducers,etc
+The applyMiddleware() function
+- Sets up the middleware pipeline
+- Retunrs a store enhancer  that is passed to createStore()
+
+Thunk
+Inprogramming, a thunk is a subroutine used to inject an additional calculation in another subroutine
+- Delay a calculation until its result is needed
+- insert operations at the beginning or end of the other subroutine 
+Middleware that allows you to write action creator that return a function instead of an action
+- can be used to delay the dispatch of an action, or 
+- Dispatch only if a certain condition is met
+Inner function receives the dispatch() and getState() store methods
+
+Useful for complex synchronous logic
+- Multople dispatches
+- Conditional dispatches
+- Simple Async logic
+Redux saga: USES ES6 generators to control pausable functions
+- complex async logic
+- Ongoing "background thread" like processing behavior
