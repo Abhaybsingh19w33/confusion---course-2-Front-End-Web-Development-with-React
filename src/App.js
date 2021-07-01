@@ -14,7 +14,8 @@ class App extends Component {
 
   render() {
     return (
-      // by wrapping this wilth provide and passing store as pros store will become available to all the component
+      // by wrapping this wilth provide and passing store as pros
+      // store will become available to all the component
       <Provider store={store}>
         {/* // this will make use of react router */}
         <BrowserRouter>
