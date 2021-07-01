@@ -20,6 +20,7 @@ export const addComment = (dishID, rating, author, comment) => ({
 // the fetchDishes should be used for fetching the dishes
 // it is going to return a function
 export const fetchDishes = () => (dispatch) => {
+<<<<<<< HEAD
     // After a 2000-second delay, I will dispatch a 
     // call to another function called addDishes with the
     //  dishes that I have imported here. So, those dishes 
@@ -30,6 +31,9 @@ export const fetchDishes = () => (dispatch) => {
     //  And then, after two seconds delay, it's going to 
     //  dispatch the addDishes. So, this is going to push 
     // the dishes into the state of our store there
+=======
+    // After a 2000-second delay, I will dispatch a call to another function called addDishes with the dishes that I have imported here. So, those dishes object will be supplied to the addDishes here. So, as you can see, this Thunk is doing two dispatches. First, it does the first dispatch. We'll see what does dishesLoading is going to do in a short while. And then, after two seconds delay, it's going to dispatch the addDishes. So, this is going to push the dishes into the state of our store there
+>>>>>>> 7fc1629393355af33177c60c96a14d3135ff477d
     dispatch(dishesLoading(true));
     // short delay of 2 sec
     setTimeout(() => {
