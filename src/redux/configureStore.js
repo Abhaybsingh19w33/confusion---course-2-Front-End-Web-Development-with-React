@@ -22,5 +22,6 @@ export const ConfigureStore = () => {
         // Logger become available within our application
         applyMiddleware(thunk, logger)
     );
+
     return store;
 }
