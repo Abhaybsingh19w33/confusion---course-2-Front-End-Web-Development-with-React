@@ -9,6 +9,7 @@ import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addComment, fetchDishes } from '../redux/ActionCreators';
+import { actions } from 'react-redux-form';
 // import { Loading} from './LoadingComponent';
 // changing from function to class component
 // function App() {
@@ -30,7 +31,9 @@ const mapDispatchToProps = (dispatch) => ({
     // then it is given as parameter to the dispatch function
     // then we are supplying as a function, which can be used as a component here
     addComment: (dishID, rating, author, comment) => dispatch(addComment(dishID, rating, author, comment)),
-    fetchDishes: () => { dispatch(fetchDishes()) }
+    fetchDishes: () => { dispatch(fetchDishes()) },
+    // this will reset feedback form 
+    resetFeedbackForm: () => { dispatch(actions.reset('feedback')) }
 });
 
 class Main extends Component {
@@ -85,7 +88,7 @@ class Main extends Component {
                     <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
                     {/* here Route returns 3 prams that we use in DishWithId */}
                     <Route path="/menu/:dishId" component={DishWithId} />
-                    <Route exact path="/contactus" component={Contact} />
+                    <Route exact path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
                     <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders} />} />
                     {/* if no path matches then redirect to home page */}
                     <Redirect to="/home" />

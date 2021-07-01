@@ -5,6 +5,8 @@ import { Promotions } from './promotions';
 import { Leaders } from './leaders';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { createForms } from 'react-redux-form';
+import { InitialFeedback } from './forms';
 
 export const ConfigureStore = () => {
     // creating store with Reducer and initialState like dishes etc
@@ -14,7 +16,11 @@ export const ConfigureStore = () => {
             dishes: Dishes,
             comments: Comments,
             promotions: Promotions,
-            leaders: Leaders
+            leaders: Leaders,
+            // this will add necessary reducer functions and state info into createStore
+            ...createForms({
+                feedback: InitialFeedback
+            }),
         }),
         // both of these are being supplied into our 
         // store as enhancers for our store. And once 
