@@ -677,3 +677,25 @@ Animation components
 - fade, Transform, FadeTransform
 Wrapper components
 - Stagger, Random, Loop
+
+Webpack
+Webpack is a module bundler fro modern js applications
+
+It recursively builds a dependency graph that includes every module your application needs 
+then packages all of those modules into a small numbers of bundles.
+
+Bundle :  a js file that incorporates assets
+- that belong together
+- should be served to tythe client in a response to a single file request
+- may incclude js, css styles, HTML and any other kind of file
+Webpack examines your application source code for import statements
+- Bui;d a dependency graph
+- Emits one or more bundles
+- Use pluginns to preprocess and minify non-js files: typescript, SASS, LESS etc
+Configuration in webpack.config.js
+
+Entry: the point where webpack should start and follow the graph of dependecies
+Output: where to bundle your application
+Loaders : Webpack only understand js. Webpack treats evry file as a module. Leaders transfomr files inot modules as they are needed to the dependecies graph
+Plugins: perform actions amd custom functionality on 
+compilations or chunks of your bundled modules and more

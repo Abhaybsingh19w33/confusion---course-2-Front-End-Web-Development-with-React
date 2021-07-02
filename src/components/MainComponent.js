@@ -43,9 +43,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-    }
     // in the main component I need to fetch the dishes. So, where do I fetch the dishes? So, this is where I can take the help of the lifecycle method of my component called as componentDidMount. Now, this lifecycle method, whatever we include in this lifecycle method component will bound will be called or will be executed just after this component gets mounted into the view of my application. So, right at the point this would be called. That is a very good time for me to fetch any data that I require for my application. 
     componentDidMount() {
         this.props.fetchDishes();
