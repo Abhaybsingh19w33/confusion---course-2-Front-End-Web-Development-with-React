@@ -639,3 +639,41 @@ import fetch from 'cross-fetch';
 fettch alternatives
 Axios
 Superagent
+
+React Animations
+Animations in React can be supported through several React animation libraries
+Two that we will explore in this course
+- React-transition-group
+- React-animation-components
+
+React-transition-group
+A set of component for managing component states(including mounting and unmounting) over time,
+specifically designed with animation in mind
+component supported;
+- transition
+- CSSTransition
+-  TransitionGroup
+
+Let you discribe a transition from one compoennt state to another over time
+-  entering, entered, exiting, exited
+Used to animate the mounting and unmounting of a component
+The in prop is used to toggle the transition state
+- When true the compoennt begins the sequence of entering- entered state
+- Timeoout specifies the duration spent in the entering state
+
+CSSTransition applies a pair of class names during the appear, enter and exit stages of the transition
+- Uses the in prop to decide when to apply the transition classes
+Eg : 
+should define .page-enter, .page-enter-active, .page-xit, .page-exit-active CSS classes
+
+TransitionGroup
+manages a set of <Transition> components in a list
+Automatically toggles the in prop for the components
+
+React Animation Component
+A set of ract components implemented using react-transition-group
+- Providdes drop in GPU acclerated animations and wrappers for group effects
+Animation components
+- fade, Transform, FadeTransform
+Wrapper components
+- Stagger, Random, Loop

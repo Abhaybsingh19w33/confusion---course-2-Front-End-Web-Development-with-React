@@ -10,6 +10,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postComment, fetchDishes, fetchPromos, fetchComments } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 // import { Loading} from './LoadingComponent';
 // changing from function to class component
 // function App() {
@@ -87,26 +88,30 @@ class Main extends Component {
         return (
             <div>
                 <Header />
-                <Switch>
-                    {/* here we are giving pathname and Homepage Component */}
-                    <Route path="/home" component={HomePage} />
-                    {/* this Route will not allow us to pasa ny props into menu component */}
-                    {/* so we have to pass the props as an function component */}
-                    <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
-                    {/* here Route returns 3 prams that we use in DishWithId */}
-                    <Route path="/menu/:dishId" component={DishWithId} />
-                    <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
-                    <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders} />} />
-                    {/* if no path matches then redirect to home page */}
-                    <Redirect to="/home" />
-                </Switch>
-                {/* using menu component from MenuComponent */}
-                {/* passing the dishes details as props */}
-                {/* < Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} /> */}
-                {/* filter will compare from each dish and get the maching dish with dishId */}
-                {/* filter will pass the result in array format */}
-                {/* so just to be safe we are selecting the first dish */}
-                {/* <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} /> */}
+                <TransitionGroup>
+                    <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+                        <Switch>
+                            {/* here we are giving pathname and Homepage Component */}
+                            <Route path="/home" component={HomePage} />
+                            {/* this Route will not allow us to pasa ny props into menu component */}
+                            {/* so we have to pass the props as an function component */}
+                            <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
+                            {/* here Route returns 3 prams that we use in DishWithId */}
+                            <Route path="/menu/:dishId" component={DishWithId} />
+                            <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+                            <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders} />} />
+                            {/* if no path matches then redirect to home page */}
+                            <Redirect to="/home" />
+                        </Switch>
+                        {/* using menu component from MenuComponent */}
+                        {/* passing the dishes details as props */}
+                        {/* < Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} /> */}
+                        {/* filter will compare from each dish and get the maching dish with dishId */}
+                        {/* filter will pass the result in array format */}
+                        {/* so just to be safe we are selecting the first dish */}
+                        {/* <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} /> */}
+                    </CSSTransition>
+                </TransitionGroup>
                 <Footer />
             </div >
         );
