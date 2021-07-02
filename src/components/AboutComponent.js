@@ -1,6 +1,9 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
+import { Loading } from "./LoadingComponent";
+import { Fade, Stagger } from "react-animation-components";
 
 function RenderLeader({ leaders }) {
     if (leaders != null) {
@@ -11,7 +14,7 @@ function RenderLeader({ leaders }) {
                     {/* alignment */}
                     <Media left middle>
                         {/* display the image */}
-                        <Media object src={leader.image} alt={leader.name} />
+                        <Media object src={baseUrl + leader.image} alt={leader.name} />
                     </Media>
                     {/* body of the image */}
                     <Media body>
