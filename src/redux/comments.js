@@ -13,8 +13,6 @@ export const Comments = (state = { errMess: null, comments: [] }, action) => {
 
         case ActionTypes.ADD_COMMENT:
             var comment = action.payload;
-            comment.id = state.comments.length;
-            comment.date = new Date().toISOString();
             // pushes in new array and a new object is created
             return { ...state, comments: state.comments.concat(comment) };
         // if not mofified then by default return dishes as it is

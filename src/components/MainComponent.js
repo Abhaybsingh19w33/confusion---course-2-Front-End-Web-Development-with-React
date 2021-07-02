@@ -8,7 +8,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addComment, fetchDishes, fetchPromos, fetchComments } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchPromos, fetchComments } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 // import { Loading} from './LoadingComponent';
 // changing from function to class component
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
     // so here actioncreator add commment will return an action object for addign a comment
     // then it is given as parameter to the dispatch function
     // then we are supplying as a function, which can be used as a component here
-    addComment: (dishID, rating, author, comment) => dispatch(addComment(dishID, rating, author, comment)),
+    postComment: (dishID, rating, author, comment) => dispatch(postComment(dishID, rating, author, comment)),
     fetchDishes: () => { dispatch(fetchDishes()) },
     // this will reset feedback form 
     resetFeedbackForm: () => { dispatch(actions.reset('feedback')) },
@@ -79,7 +79,7 @@ class Main extends Component {
                     errMess={this.props.dishes.errMess}
                     comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId, 10))}
                     commentsErrMess={this.props.comments.errMess}
-                    addComment={this.props.addComment}
+                    postComment={this.props.postComment}
                 />
             );
         }

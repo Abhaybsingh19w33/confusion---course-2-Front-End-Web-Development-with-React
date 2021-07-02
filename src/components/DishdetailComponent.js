@@ -32,7 +32,7 @@ function RenderDish({ dish }) {
     }
 }
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments, postComment, dishId }) {
     if (comments != null) {
         return (
             <div className="col-12 col-md-5 m-1">
@@ -49,7 +49,7 @@ function RenderComments({ comments, addComment, dishId }) {
                         );
                     })}
                 </ul>
-                <CommentForm dishId={dishId} addComment={addComment} />
+                <CommentForm dishId={dishId} postComment={postComment} />
             </div>
         );
     } else return <div></div>;
@@ -97,7 +97,7 @@ const DishDetail = (props) => {
                         {/* dishId={props.dish.id} id ispassed to 
                         know about which which dish is going to be rendered */}
                         <RenderComments comments={props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             dishId={props.dish.id}
                         />
                     </div>
@@ -140,7 +140,7 @@ class CommentForm extends Component {
         // components, and then when you come down the RenderComments component realizes 
         // that the comments part has changed, so it will have to be rendered. So, react
         //  takes care of re rendering that with new the comment added into the list there.
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {

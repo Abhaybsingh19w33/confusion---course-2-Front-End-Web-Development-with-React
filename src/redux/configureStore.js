@@ -26,8 +26,7 @@ export const ConfigureStore = () => {
         // store as enhancers for our store. And once 
         // we do that, then both the Thunk and the 
         // Logger become available within our application
-        // applyMiddleware(thunk, logger)
-        applyMiddleware(thunk)
+        applyMiddleware(thunk, logger)
     );
 
     return store;
