@@ -3,16 +3,13 @@ import * as ActionTypes from './ActionTypes';
 // reducer generate new state from currennt state
 // defining the inital state whern the app starts
 // state and action as parameter
-export const Comments = (state = {
-    errmess: null,
-    comments: []
-}, action) => {
+export const Comments = (state = { errMess: null, comments: [] }, action) => {
     switch (action.type) {
         case ActionTypes.ADD_COMMENTS:
-            return { ...state, isLoading: false, errMess: null, comments: action.payload };
+            return { ...state, errMess: null, comments: action.payload };
 
         case ActionTypes.COMMENTS_FAILED:
-            return { ...state, isLoading: false, errMess: action.payload, comments: [] };
+            return { ...state, errMess: action.payload };
 
         case ActionTypes.ADD_COMMENT:
             var comment = action.payload;
@@ -24,4 +21,4 @@ export const Comments = (state = {
         default:
             return state;
     }
-}
+};

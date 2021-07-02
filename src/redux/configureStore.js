@@ -20,13 +20,14 @@ export const ConfigureStore = () => {
             // this will add necessary reducer functions and state info into createStore
             ...createForms({
                 feedback: InitialFeedback
-            }),
+            })
         }),
         // both of these are being supplied into our 
         // store as enhancers for our store. And once 
         // we do that, then both the Thunk and the 
         // Logger become available within our application
-        applyMiddleware(thunk, logger)
+        // applyMiddleware(thunk, logger)
+        applyMiddleware(thunk)
     );
 
     return store;

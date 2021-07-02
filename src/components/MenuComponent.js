@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import {baseUrl} from '../shared/baseUrl'; 
+import { baseUrl } from '../shared/baseUrl';
 // converting the class component to functional component
 function RenderMenuItem({ dish, onClick }) {
     return (

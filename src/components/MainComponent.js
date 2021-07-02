@@ -34,8 +34,8 @@ const mapDispatchToProps = (dispatch) => ({
     fetchDishes: () => { dispatch(fetchDishes()) },
     // this will reset feedback form 
     resetFeedbackForm: () => { dispatch(actions.reset('feedback')) },
-    fetchComments: () => { dispatch(fetchComments()) },
-    fetchPromos: () => { dispatch(fetchPromos()) }
+    fetchComments: () => dispatch(fetchComments()),
+    fetchPromos: () => dispatch(fetchPromos())
 });
 
 class Main extends Component {
@@ -57,10 +57,10 @@ class Main extends Component {
                 <Home
                     dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
                     dishesLoading={this.props.dishes.isLoading}
-                    dishesErrMess={this.props.dishes.errMess}
+                    dishErrMess={this.props.dishes.errMess}
                     promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
-                    promosLoading={this.props.promotions.isLoading}
-                    promosErrMess={this.props.promotions.errMess}
+                    promoLoading={this.props.promotions.isLoading}
+                    promoErrMess={this.props.promotions.errMess}
                     leader={this.props.leaders.filter((leader) => leader.featured)[0]}
                 />
             );
@@ -95,7 +95,7 @@ class Main extends Component {
                     <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
                     {/* here Route returns 3 prams that we use in DishWithId */}
                     <Route path="/menu/:dishId" component={DishWithId} />
-                    <Route exact path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+                    <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
                     <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders} />} />
                     {/* if no path matches then redirect to home page */}
                     <Redirect to="/home" />
