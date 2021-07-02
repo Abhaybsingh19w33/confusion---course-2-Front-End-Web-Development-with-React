@@ -444,3 +444,198 @@ Useful for complex synchronous logic
 Redux saga: USES ES6 generators to control pausable functions
 - complex async logic
 - Ongoing "background thread" like processing behavior
+
+client and server
+Web application are not stand-alone
+Many of them have a "cloud" backend
+
+The networking alphabet Soup
+HTTP - application layer protocols
+URL -  unifor resource location
+JSON - Encoding data from server to client and vice versa
+XML
+SOAP- protocol - 
+REST - 
+GET 
+PUT
+POST
+DELETE
+
+client-server communication
+Network operations cause unexpecvcted delays
+You need to write applicaions recognizing the asynchronoud nature of cimmunication
+- Data is not instamteneouslyy available
+
+
+HTTP
+A client server protocol communications protocol
+Allows retreiving interlinked documents (hypertext)
+- WWW
+
+HTTP verbs
+head
+get
+post
+put
+delete
+trace
+options
+connect
+
+HTTP response
+Server may send back data in a specififc format
+XML
+JSON 
+- lightweight data format 
+- languge independent
+- selfdescribing and easy to understand
+
+Data structured as:
+- A collection of name/value pairs
+- ordered list of values
+
+Web services
+A system designed to support interoperability of systems connected over a network
+- Service oriented architecture(SOA
+- A standardized way of integrating web-based applications using open standard oerating over the internet
+Two common approaches used in practice
+- SOAP (Simople Object Access Protocol ) based services
+-- Uses WSDL (Web services Decription languges)
+-- XML based
+- REST (Representational State Transfer)
+-- Use Web standards
+-- Exchange of data using either XML or JSON
+-- Simpller compared to SOAP, WSDL etc
+
+REST
+A style of software architecture for distributed hypermedia sysytems such as the World Wide Web
+A collection of network  architecture principles whihc outline how resources are defined and addressed
+
+Use HTTP methods explicitly
+Be stateless
+Expose director structure-like urls
+Transfer using XML, JSON or both
+
+REST and HTTP
+The motivation for rest was to capture the characteristics of the web that made the web succesful
+URI(Uniform Resource Indicartor) Addressable resources
+HTTP protocol
+Make a request -  receive response- display response
+Expolit the use of the HTTP protocol beyond HTTP POST and HTTP GET
+- HTTP PUT, HTTP DELETE
+- Preserve Idempotence
+
+Resources 
+The key abstraction of information in rEST is a rtesource
+A resource is a concrptual mapping to a set of entities
+- Any information that can be named can be a resource, a document or image,
+a temporal service, acollection of other resouces, a non- virtual object asn so on
+Represented with a global identifier(URI in HTTP)
+
+
+Names Resources
+As you travers the path from more generic to mmore specific, you are navigatin the data
+Directory structure to identify resources
+
+Verbs
+Represent the action to be performed on resources
+- corresponding to the CRUD operations
+- HTTP GET READ
+- HTTP POST CREATE
+- HTTP PUT UPDATE
+- HTTP DELETE DELETE
+
+HTTP GET
+used by clients to request for information
+Issuing a GET request transfers the data from the server to the client in some representation(XML, JSON)
+
+
+Representations
+How data is represented or returned to the client for presentation
+2 main formats
+- JSON
+- XML
+It is common to have multiple representations of the same data
+- CLient can request the data in a specific format if supported
+
+Stateless server
+- server side should not track the client state
+- Every request is a new request from the client
+Client side should track its own state
+- using cookies , client side database
+- Every request must include sufficient information for server to serve up the requestedd information
+- Client- sode MVC setup
+
+Promises
+Promise is a mechanism that supports asynchronoous computation
+Proxy for a value noe necessarily known when the promise is created
+-  It represents a value that may be available now, or in the future, or never
+
+Why promises?
+Solve the callback hell(heavily nested callback code) program
+Promised can be chained
+Can immediately return: 
+- Promise.resove(result)
+- Promise.reject(error)
+
+
+Fetch
+HMLHttpRequest() is qute cumbersome and outdated
+- Has been made palatebale by wrapping it appropriately in most js libraries like Jquery as ajax
+The fetch API is a modern replacement for XMLHttp Request
+- Provides an initerface for fetching resiurces(including across the network)
+- More powerful and flexible feature set
+- promise based
+
+fetch Abstraction
+Request - resource request
+Response - Response to a request
+Headers = represents response/request headers, allowing yout o query them an take different actions Depending on the results
+Body - provides methods relating to the body of the response/ request,allowing you to declare what is content type is and how it should be handled
+
+fetch usage
+fetch(baseUrl + 'dishes')
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.log(error.message));
+
+fetch posting data
+fetch(baseUrl + 'comments',{
+    method:'POST',
+    body: JSON.stringify(newComment),
+    headers:{
+        'Content-Typr':'applicaion/json'
+    },
+    credentials:'same-origin'
+})
+
+Ffetch Dealing with error
+fetch(baseUrl + 'dishes')
+.then(response => {
+if(response.ok){
+    retunr response;
+}
+else {
+    var error = new Error('Error ' + response.status +':' + response.statusText );
+    error.response = response;
+    throw error;
+}
+},
+error =>{
+    var errmess = new Error(error.message);
+    throw errmess;
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.log(error.message));
+
+Cross-Fetch
+Cross-fetch libraray provide support for fetch both in Node applications and browsers
+- Uses whatwg-fetch polyfill in browsers that do not have fetch support
+- Uses node-fetch for node applications ono the server
+To use in the application
+import fetch from 'cross-fetch';
+
+fettch alternatives
+Axios
+Superagent

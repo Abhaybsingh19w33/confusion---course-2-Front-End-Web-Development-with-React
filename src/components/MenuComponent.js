@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl'; 
 // converting the class component to functional component
 function RenderMenuItem({ dish, onClick }) {
     return (
@@ -13,7 +14,7 @@ function RenderMenuItem({ dish, onClick }) {
             {/* so dish.id will be substituted with its id */}
             <Link to={`/menu/${dish.id}`}>
                 {/* display the image */}
-                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
                 {/* displaying the name of the dishes on the image card itself */}
                 <CardImgOverlay>
                     {/* heading for dish */}

@@ -62,7 +62,7 @@ export const Dishes = (state = {
             // the isLoading to false because I have already failed to load the dishes, 
             // so I need to set up the error message. So, the error message will be equal 
             // to action.payload.
-            return { ...state, isLoading: false, errMess: action.payload };
+            return { ...state, isLoading: false, errMess: action.payload, dishes: [] };
 
         // if not mofified then by default return dishes as it is
         default:
